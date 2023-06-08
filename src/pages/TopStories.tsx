@@ -8,7 +8,7 @@ export default function TopStoriesPage() {
     return (
         <>
             <ul style={{ listStyle: 'none' }}>
-                {isLoading && <li> Loading...</li>}
+                {isLoading}
                 {data?.map((id: number, index: number) => (
                     <li key={id}>
                         <Story id={id} index={index} />

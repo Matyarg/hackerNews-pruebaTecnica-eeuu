@@ -2,6 +2,7 @@ import useSWR from 'swr'
 import { Link } from "wouter";
 import { getItemInfo } from '../services/hacker-news'
 import { smallLink, story, storyFooter, storyHeader, storyTitle } from './Story.css'
+import { StoryLoader } from './StoryLoader';
 
 export const Story = (props: {
     id: number
@@ -10,7 +11,7 @@ export const Story = (props: {
     const { id, index } = props
     const { data, isLoading } = useSWR(`/story/${id}`, () => getItemInfo(id))
     if (isLoading) {
-        return (<span> 'Loading... '</span>)
+        return (<StoryLoader />)
     }
 
     const { by, kids, score, title, url } = data
