@@ -5,7 +5,7 @@ export const header = style({
     borderBottom: '1px solid #eee',
     display: 'flex',
     gap: '16px',
-    padding: '15px'
+    padding: '15px 40px'
 })
 
 export const link = style({
