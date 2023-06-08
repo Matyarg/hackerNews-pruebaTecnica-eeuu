@@ -1,5 +1,5 @@
 
-import { lazy } from 'react'
+import { Suspense, lazy } from 'react'
 import { Header } from './components/Header'
 import { Route } from 'wouter'
 
@@ -12,9 +12,13 @@ const DetailPage = lazy(() => import('./pages/Detail'))
 function App() {
   return (
     <>
-      <Header></Header>
-      <Route path='/' component={TopStoriesPage}></Route>
-      <Route path='/article/:id' component={DetailPage}></Route>
+      <Header />
+      <main>
+        <Suspense fallback="Loading..." >
+          <Route path='/' component={TopStoriesPage} />
+          <Route path='/article/:id' component={DetailPage} />
+        </Suspense>
+      </main>
     </>
   )
 }
