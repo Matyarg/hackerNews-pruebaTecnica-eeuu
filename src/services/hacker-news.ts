@@ -8,7 +8,7 @@ export const getTopStories = async (page: number, limit: number) => {
     return ids
 }
 
-export const getArticleInfo = async (id: number) => {
+export const getItemInfo = async (id: number) => {
     const response = await fetch(`http://hacker-news.firebaseio.com/v0/item/${id}.json`)
     return response.json()
 }
