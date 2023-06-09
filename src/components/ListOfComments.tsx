@@ -12,7 +12,7 @@ const Comment = (props: {
 
     const { by, text, time, kids } = data
 
-
+    const newtime: Date = new Date(time * 1000)
 
     return (
         <>
@@ -21,7 +21,7 @@ const Comment = (props: {
                     <small>
                         <span>{by}</span>
                         <span> - </span>
-                        <span>{time}</span>
+                        <span> 3 Hours Ago</span>
                     </small>
                 </header>
                 <p>{text}</p>
