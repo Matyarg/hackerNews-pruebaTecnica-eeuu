@@ -1,5 +1,6 @@
 import useSWR from 'swr'
 import { getItemInfo } from '../services/hacker-news'
+import { CommentLoader } from './CommentLoader'
 const Comment = (props: {
     id: number
 }) => {
@@ -7,7 +8,7 @@ const Comment = (props: {
     const { data, isLoading } = useSWR(`/comment/${id}`, () => getItemInfo(Number(id)))
 
     if (isLoading) {
-        return <p>Loading...</p>
+        return <CommentLoader></CommentLoader>
     }
 
     const { by, text, time, kids } = data
