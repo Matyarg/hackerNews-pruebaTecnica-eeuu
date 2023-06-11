@@ -16,16 +16,16 @@ const Comment = (props: {
 
     return (
         <>
-            <article>
-                <header>
+            <details open>
+                <summary>
                     <small>
                         <span>{by}</span>
                         <span> - </span>
                         <span> 3 Hours Ago</span>
                     </small>
-                </header>
+                </summary>
                 <p>{text}</p>
-            </article>
+            </details>
             {
                 kids?.length > 0 && <ListOfComments ids={kids.slice(0, 10)} />
             }
@@ -38,7 +38,7 @@ export const ListOfComments = (props: {
 }) => {
     const { ids } = props
     return (
-        <ul>
+        <ul style={{ listStyle: "none" }}>
             {
                 ids?.map((id: number) => (
                     <li key={id}>
