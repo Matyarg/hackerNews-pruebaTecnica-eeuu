@@ -6,10 +6,8 @@ import { Route } from 'wouter'
 const TopStoriesPage = lazy(() => import('./pages/TopStories'))
 const DetailPage = lazy(() => import('./pages/Detail'))
 
-
-
-
 function App() {
+
   return (
     <>
       <Header />

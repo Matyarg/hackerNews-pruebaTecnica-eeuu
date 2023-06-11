@@ -4,7 +4,6 @@ import { useEffect, useRef } from 'react';
 import { getTopStories } from '../services/hacker-news'
 import { Story } from "../components/Story";
 export default function TopStoriesPage() {
-
     // const { data, isLoading } = useSWR('stories', () => getTopStories(1, 6))
     const { data, isLoading, size, setSize } = useSWRInfinite(
         (index) => `stories/${index + 1}`,
