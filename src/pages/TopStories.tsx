@@ -1,6 +1,6 @@
 // import useSWR from 'swr'
 import useSWRInfinite from 'swr/infinite'
-
+import { useEffect, useRef } from 'react';
 import { getTopStories } from '../services/hacker-news'
 import { Story } from "../components/Story";
 export default function TopStoriesPage() {
@@ -10,10 +10,31 @@ export default function TopStoriesPage() {
         (index) => `stories/${index + 1}`,
         (key) => {
             const [, page] = key.split('/')
-            return getTopStories(Number(page), 5)
+            return getTopStories(Number(page), 10)
         }
     )
+
     const stories = data?.flat()
+
+    const campana = useRef<HTMLSpanElement>(null)
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                setSize(size + 1)
+            }
+        })
+
+        if (campana.current == null) {
+            return
+        }
+
+        observer.observe(campana.current)
+
+        return () => {
+            observer.disconnect()
+        }
+    }, [isLoading, setSize])
 
 
     return (
@@ -25,10 +46,10 @@ export default function TopStoriesPage() {
                     </li>
                 ))}
             </ul>
-
-            <button onClick={() => setSize(size + 1)}>
+            {!isLoading && <span ref={campana} >.</span>}
+            {/* <button onClick={() => setSize(size + 1)}>
                 Load more
-            </button>
+            </button> */}
         </>
     )
 }
