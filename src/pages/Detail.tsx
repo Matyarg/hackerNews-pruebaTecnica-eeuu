@@ -16,7 +16,7 @@ export default function DetailPage(props: {
     const commentIds = data?.kids.slice(0, 10) ?? []
 
     useEffect(() => {
-        document.title = `Hacker News - ${title}`
+        document.title = `Hacker News -- ${title}`
     }, [title])
 
     return (
